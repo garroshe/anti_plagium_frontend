@@ -34,7 +34,6 @@ export const MainSection = () => {
     setIsChecking(true);
     setProgress(0);
 
-    // Запустити запит одразу (не чекаючи статусів)
     const checkPromise = fetch(`${import.meta.env.VITE_API_URL}/check`, {
       method: "POST",
       headers: {
@@ -49,7 +48,6 @@ export const MainSection = () => {
       }),
     });
 
-    // Паралельно показувати статуси
     const progressPromise = (async () => {
       for (const stage of STAGES) {
         await new Promise((resolve) => setTimeout(resolve, 800));
@@ -59,7 +57,6 @@ export const MainSection = () => {
     })();
 
     try {
-      // Чекати завершення запиту
       const response = await checkPromise;
 
       if (!response.ok) {
@@ -69,7 +66,6 @@ export const MainSection = () => {
 
       const data: PlagiarismResult = await response.json();
 
-      // Почекати завершення прогрес-бару для плавності UI
       await progressPromise;
 
       setResult(data);
@@ -91,10 +87,8 @@ export const MainSection = () => {
   const handleDownload = () => {
     if (!result) return;
 
-    // Формування HTML звіту
     const reportHTML = generateReportHTML(result, text);
 
-    // Створення Blob та завантаження
     const blob = new Blob([reportHTML], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -132,7 +126,7 @@ export const MainSection = () => {
         return `
           <div style="margin-bottom: 30px; padding: 20px; background: #f9fafb; border-radius: 8px; border-left: 4px solid ${item.found ? "#ef4444" : "#10b981"};">
             <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 16px;">
-              Блок ${index + 1} ${item.found ? "⚠️ Знайдено збіги" : "✓ Унікальний"}
+              Блок ${index + 1} ${item.found ? "Знайдено збіги" : "✓ Унікальний"}
             </h3>
             <p style="margin: 0 0 20px 0; color: #4b5563; line-height: 1.6; font-style: italic;">
               "${item.sentence}"

@@ -35,7 +35,7 @@ export const MainSection = () => {
     setProgress(0);
 
     for (const stage of STAGES) {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setProgress(stage.percent);
       setCurrentStageText(stage.text);
     }
@@ -46,16 +46,25 @@ export const MainSection = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({
+          text,
+          options: {
+            blockSize: 4, // 1-10: менше = точніше, більше = швидше
+            concurrency: 3, // 1-5: більше = швидше перевірка
+          },
+        }),
       });
 
-      if (!response.ok) throw new Error("Помилка при перевірці тексту");
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Помилка при перевірці тексту");
+      }
 
       const data: PlagiarismResult = await response.json();
       setResult(data);
     } catch (error) {
       console.error(error);
-      alert("Сталася помилка при перевірці тексту");
+      alert(error instanceof Error ? error.message : "Сталася помилка при перевірці тексту");
     } finally {
       setIsChecking(false);
     }

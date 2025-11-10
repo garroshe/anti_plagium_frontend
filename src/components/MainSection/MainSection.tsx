@@ -42,7 +42,7 @@ export const MainSection = () => {
       body: JSON.stringify({
         text,
         options: {
-          blockSize: 3,
+          blockSize: 2,
           concurrency: 5,
         },
       }),

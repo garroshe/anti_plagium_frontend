@@ -305,8 +305,8 @@ export const MainSection = () => {
     </div>
 
     <div style="margin-top: 60px; padding-top: 30px; border-top: 2px solid #e5e7eb; text-align: center; color: #9ca3af; font-size: 12px;">
-      <p>Цей звіт згенеровано автоматично системою перевірки на плагіат</p>
-      <p style="margin-top: 5px;">© ${new Date().getFullYear()} Anti-Plagiarism System</p>
+      <p>Цей звіт згенеровано автоматично моєю системою перевірки на плагіат</p>
+      <p style="margin-top: 5px;">© ${new Date().getFullYear()} Anti-Plagium Garrosh</p>
     </div>
   </div>
 </body>

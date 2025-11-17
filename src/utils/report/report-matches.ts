@@ -1,7 +1,9 @@
-export const renderMatches = (result: any): string => {
+import type { CheckedResult, PlagiarismMatch, PlagiarismResult } from "../../types";
+
+export const renderMatches = (result: PlagiarismResult): string => {
     return result.checkedResults
-        .map((item, index) => {
-            const matches = item.matches.filter((m: any) => m.similarity > 15);
+        .map((item: CheckedResult, index: number) => {
+            const matches = item.matches.filter((m: PlagiarismMatch) => m.similarity > 15);
             if (matches.length === 0) return "";
 
             return `
@@ -21,7 +23,7 @@ export const renderMatches = (result: any): string => {
 
             ${matches
                 .map(
-                    (match: any) => `
+                    (match: PlagiarismMatch) => `
                 <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 6px; border: 1px solid #e5e7eb;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
                     <span style="font-weight: 600; color: #1f2937; font-size: 14px;">${match.title}</span>

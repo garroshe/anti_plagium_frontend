@@ -19,7 +19,6 @@ export const LoginModal = () => {
   const {
     control: loginControl,
     handleSubmit: handleLoginSubmit,
-    formState: { errors: loginErrors },
     reset: resetLogin,
   } = useForm<LoginForm>({
     resolver: yupResolver(loginSchema),
@@ -35,7 +34,6 @@ export const LoginModal = () => {
   const {
     control: registerControl,
     handleSubmit: handleRegisterSubmit,
-    formState: { errors: registerErrors },
     reset: resetRegister,
   } = useForm<RegisterForm>({
     resolver: yupResolver(registerSchema),

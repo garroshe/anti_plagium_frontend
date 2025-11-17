@@ -64,7 +64,7 @@ export const ProfileSettingsModal = () => {
       const response = await userService.updateUser({
         uid: user.uid,
         data: {
-          avatar: formState.avatar || null,
+          avatar: formState.avatar.trim(),
           userName: formState.userName.trim(),
           lastName: formState.lastName.trim(),
           loginName: formState.loginName.trim(),

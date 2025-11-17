@@ -6,4 +6,9 @@ export const StyledFooter = styled.footer`
   color: white;
   opacity: 0.8;
   font-size: 0.875rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+  }
 `;

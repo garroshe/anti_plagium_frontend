@@ -14,4 +14,9 @@ export const StyledNewCheckButton = styled.button`
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;

@@ -10,6 +10,10 @@ export const StyledProfileForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (max-width: 480px) {
+    gap: 0.75rem;
+  }
 `;
 
 export const AvatarPreview = styled.div`
@@ -24,6 +28,16 @@ export const AvatarPreview = styled.div`
     object-fit: cover;
     border: 2px solid #d9d9d9;
   }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    img {
+      width: 56px;
+      height: 56px;
+    }
+  }
 `;
 
 export const StyledLabel = styled.label`
@@ -36,6 +50,14 @@ export const StyledActions = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
 `;
 
 export const FeedbackText = styled.p<{ $type: "success" | "error" }>`

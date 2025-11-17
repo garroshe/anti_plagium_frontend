@@ -13,6 +13,10 @@ const fadeIn = keyframes`
 
 export const DropdownWrapper = styled.div`
   position: relative;
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 export const ProfileButton = styled.button`
@@ -30,6 +34,16 @@ export const ProfileButton = styled.button`
   &:hover {
     background-color: #f3f4f6;
   }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
 export const Avatar = styled.img`
@@ -42,10 +56,6 @@ export const Avatar = styled.img`
 export const UserInfo = styled.div`
   display: block;
   text-align: left;
-
-  @media (max-width: 640px) {
-    display: none;
-  }
 `;
 
 export const UserName = styled.p`
@@ -73,6 +83,17 @@ export const Dropdown = styled.div`
   padding: 8px 0;
   z-index: 50;
   animation: ${fadeIn} 0.2s ease-in-out;
+
+  @media (max-width: 640px) {
+    position: static;
+    width: 100%;
+    max-width: unset;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    left: 0;
+  }
 `;
 
 export const DropdownHeader = styled.div`
@@ -101,5 +122,9 @@ export const MenuItem = styled.button<{ $danger?: boolean }>`
 
   &:hover {
     background-color: ${({ $danger }) => ($danger ? "#fef2f2" : "#f3f4f6")};
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
   }
 `;

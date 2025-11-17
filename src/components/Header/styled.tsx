@@ -39,6 +39,13 @@ export const StyledHederTop = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
 `
 
 export const StyledLogoType = styled.div`
@@ -46,6 +53,10 @@ export const StyledLogoType = styled.div`
     font-weight: bold;
     color: white;
     cursor: pointer;
+
+    @media (max-width: 480px) {
+        font-size: 20px;
+    }
 `
 
 export const StyledLoginButton = styled.button`
@@ -68,6 +79,11 @@ export const StyledLoginButton = styled.button`
         opacity: 0.6;
         cursor: not-allowed;
     }
+
+    @media (max-width: 480px) {
+        width: 100%;
+        text-align: center;
+    }
 `
 
 export const StyledUserInfo = styled.div`
@@ -83,5 +99,10 @@ export const StyledUserInfo = styled.div`
     &:hover .ant-avatar {
         border-color: rgba(255, 255, 255, 0.6);
         transform: scale(1.05);
+    }
+
+    @media (max-width: 480px) {
+        width: 100%;
+        justify-content: space-between;
     }
 `

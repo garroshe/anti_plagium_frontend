@@ -13,4 +13,9 @@ export const StyledDownloadReportButton = styled.button`
   color: #6b7280;
   cursor: pointer;
   transition: all 0.2s;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;

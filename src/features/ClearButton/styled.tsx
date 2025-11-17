@@ -13,5 +13,10 @@ export const StyledClearButton = styled.button<{$text: string, $isChecking: bool
   color: #6b7280;
   transition: all 0.2s;
   cursor:  ${({ $isChecking, $text }) =>  $isChecking || !$text ? "not-allowed" : "pointer"};
-    opacity: ${({ $isChecking, $text }) => $isChecking || !$text ? 0.5 : 1};,
+  opacity: ${({ $isChecking, $text }) => $isChecking || !$text ? 0.5 : 1};
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;

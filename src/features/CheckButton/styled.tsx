@@ -19,4 +19,9 @@ export const StyledCheckButton = styled.button<{$text: string, $isChecking: bool
         transform: translateY(-2px);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;

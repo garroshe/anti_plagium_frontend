@@ -93,3 +93,9 @@ export const StyledResultSomeThing = styled.div`
     inset: 5px;
   }
 `;
+
+export const StyledClearAndPasteButtonWrapper = styled.div`
+    display: flex;
+    gap: 10px;
+    align-items: center;
+`

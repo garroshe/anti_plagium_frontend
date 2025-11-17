@@ -1,6 +1,6 @@
 import { AlertCircle } from "lucide-react";
 
-import type { PlagiarismResult } from "../../../../type";
+import type { PlagiarismResult } from "../../../../types";
 import { MatchItem } from "./components/MatchItem/MatchItem.tsx";
 import { StyledMatchesTitle, StyledMatchesWrapper } from "./styled.tsx";
 

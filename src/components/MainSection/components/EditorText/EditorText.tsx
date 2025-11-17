@@ -1,4 +1,4 @@
-import React from "react";
+import React, {forwardRef} from "react";
 
 import {
   StyledEditorLabel,
@@ -14,21 +14,26 @@ type EditorTextPropsType = {
   isChecking: boolean;
 };
 
-export const EditorText = ({ text, setText, isChecking }: EditorTextPropsType) => {
-  return (
-    <StyledEditorText>
-      <StyledEditorLabel>Введіть текст для перевірки</StyledEditorLabel>
-      <StyledEditorTextArea
-        value={text}
-        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
-        placeholder="Вставте або введіть текст, який потрібно перевірити на унікальність..."
-        disabled={isChecking}
-        onFocus={(e: React.FocusEvent<HTMLTextAreaElement>) => (e.target.style.borderColor = "#667eea")}
-        onBlur={(e: React.FocusEvent<HTMLTextAreaElement>) => (e.target.style.borderColor = "#e5e7eb")}
-      />
-      <StyledEditorWrapper>
-        <StyledEditorWordsCount>{text.length} символів</StyledEditorWordsCount>
-      </StyledEditorWrapper>
-    </StyledEditorText>
-  );
-};
+export const EditorText = forwardRef<HTMLTextAreaElement, EditorTextPropsType>(
+    ({ text, setText, isChecking }, ref) => {
+        return (
+            <StyledEditorText>
+                <StyledEditorLabel>Введіть текст для перевірки</StyledEditorLabel>
+
+                <StyledEditorTextArea
+                    ref={ref}
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                    placeholder="Вставте або введіть текст..."
+                    disabled={isChecking}
+                    onFocus={(e) => (e.target.style.borderColor = "#667eea")}
+                    onBlur={(e) => (e.target.style.borderColor = "#e5e7eb")}
+                />
+
+                <StyledEditorWrapper>
+                    <StyledEditorWordsCount>{text.length} символів</StyledEditorWordsCount>
+                </StyledEditorWrapper>
+            </StyledEditorText>
+        );
+    }
+);

@@ -34,11 +34,54 @@ export const StyledHeaderTitle = styled.h1`
   }
 `;
 
-export const StyledHeaderSubTitle = styled.p`
-  font-size: 1.125rem;
-  opacity: 0.9;
+export const StyledHederTop = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+`
 
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-  }
-`;
+export const StyledLogoType = styled.div`
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+`
+
+export const StyledLoginButton = styled.button`
+    padding: 12px 24px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover:not(:disabled) {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+`
+
+export const StyledUserInfo = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    .ant-avatar {
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.2s ease-in-out;
+    }
+    
+    &:hover .ant-avatar {
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: scale(1.05);
+    }
+`

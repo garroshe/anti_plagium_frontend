@@ -12,8 +12,7 @@ export const GlobalStyles = createGlobalStyle`
   html, body {
     height: 100%;
     font-family: 'Inter', sans-serif;
-    background-color: #0d0d0d;
-    color: #f2f2f2;
+      color: #f2f2f2;
     margin: 0;
   }
 
@@ -23,8 +22,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    cursor: pointer;
     border: none;
     background: none;
+  }
+  
+  body {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #667eea;
   }
 `;

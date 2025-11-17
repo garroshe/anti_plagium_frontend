@@ -1,15 +1,22 @@
-import {useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { Button, message } from "antd";
 
-import type { PlagiarismResult } from "../../types";
-import { ActionsWrapper } from "./components/ActionsWrapper/ActionsWrapper.tsx";
 import { CheckButton } from "../../features/CheckButton";
 import { ClearButton } from "../../features/ClearButton";
+import { PasteTextButton } from "../../features/PasteTextButton";
+import { useUserFetchQuery } from "../../hooks/use-user-fetch-query.ts";
+import { userTextsService } from "../../services/userTextsService.ts";
+import type { PlagiarismResult } from "../../types";
+import { getUniquenessColor } from "../../utils/get-uniqueness-color.ts";
+import { renderReportTemplate } from "../../utils/report/report-template.ts";
+import { ActionsWrapper } from "./components/ActionsWrapper/ActionsWrapper.tsx";
 import { DownloadReportButton } from "./components/DownloadReportButton/DownloadReportButton.tsx";
 import { EditorText } from "./components/EditorText/EditorText.tsx";
 import { Matches } from "./components/Matches/Matches.tsx";
 import { NewCheckButton } from "./components/NewCheckButton/NewCheckButton.tsx";
 import { ProgressBar } from "./components/ProgressBar/ProgressBar.tsx";
 import { STAGES } from "./constants.ts";
+import { useFetchQueryMutation } from "./hooks/use-fetch-query-mutation.ts";
 import {
   StyledClearAndPasteButtonWrapper,
   StyledMainSection,
@@ -21,13 +28,6 @@ import {
   StyledUniqueness,
   StyledUniquenessScore,
 } from "./styled.tsx";
-import {PasteTextButton} from "../../features/PasteTextButton";
-import {useFetchQueryMutation} from "./hooks/use-fetch-query-mutation.ts";
-import {getUniquenessColor} from "../../utils/get-uniqueness-color.ts";
-import {renderReportTemplate} from "../../utils/report/report-template.ts";
-import {useUserFetchQuery} from "../../hooks/use-user-fetch-query.ts";
-import { userTextsService } from "../../services/userTextsService.ts";
-import { Button, message } from "antd";
 
 export const MainSection = () => {
   const [text, setText] = useState("");
@@ -38,8 +38,8 @@ export const MainSection = () => {
   const [lastSavedTextId, setLastSavedTextId] = useState<string | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const {userFetch} = useUserFetchQuery();
-  const {mutate} = useFetchQueryMutation();
+  const { userFetch } = useUserFetchQuery();
+  const { mutate } = useFetchQueryMutation();
 
   const saveCheckedText = async (textToSave: string, resultToSave: PlagiarismResult) => {
     const uid = localStorage.getItem("userId");
@@ -74,24 +74,23 @@ export const MainSection = () => {
     })();
 
     mutate(
-        { text },
-        {
-          onSuccess: async (response) => {
-            await progressPromise;
-            setResult(response);
-            setIsChecking(false);
-            
-            // Зберігаємо результат перевірки для авторизованого користувача
-            if (userFetch) {
-              const docId = await saveCheckedText(text, response);
-              setLastSavedTextId(docId);
-            }
-          },
-          onError: () => {
-            alert("Помилка при перевірці тексту");
-            setIsChecking(false);
-          },
-        }
+      { text },
+      {
+        onSuccess: async (response) => {
+          await progressPromise;
+          setResult(response);
+          setIsChecking(false);
+
+          if (userFetch) {
+            const docId = await saveCheckedText(text, response);
+            setLastSavedTextId(docId);
+          }
+        },
+        onError: () => {
+          alert("Помилка при перевірці тексту");
+          setIsChecking(false);
+        },
+      },
     );
   };
 
@@ -111,8 +110,7 @@ export const MainSection = () => {
     const start = element.selectionStart;
     const end = element.selectionEnd;
 
-    const newText =
-        text.slice(0, start) + paste + text.slice(end);
+    const newText = text.slice(0, start) + paste + text.slice(end);
 
     setText(newText);
 
@@ -121,7 +119,7 @@ export const MainSection = () => {
       element.selectionStart = element.selectionEnd = start + paste.length;
       element.focus();
     });
-  }
+  };
 
   const handleDownload = () => {
     if (!result) return;

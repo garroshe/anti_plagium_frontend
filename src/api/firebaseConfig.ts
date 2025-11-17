@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  databaseURL: "https://antiplagium-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: import.meta.env.VITE_DATA_BASE_URL,
 };
 
 const app = initializeApp(firebaseConfig);

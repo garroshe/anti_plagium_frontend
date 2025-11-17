@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+Курсова робота: Веб-додаток "Antiplagium"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Цей проект є веб-додатком для перевірки текстових документів на плагіат. Він розроблений як курсова робота.
 
-Currently, two official plugins are available:
+Додаток дозволяє користувачам реєструватися та отримувати звіт про унікальність тексту.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Основні Можливості
 
-## React Compiler
+Автентифікація користувачів: Реєстрація та вхід за допомогою Firebase Authentication.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Аналіз тексту: Взаємодія з бекенд API для аналізу тексту на плагіат.
 
-## Expanding the ESLint configuration
+Відображення результатів: Інтерфейс для перегляду результатів перевірки.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Генерація PDF-звітів: Створення PDF-звітів з результатами аналізу за допомогою jspdf та jspdf-autotable.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Використані Технології
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Frontend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React (v18): Бібліотека для створення інтерфейсів користувача.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Vite: Сучасний інструмент для збірки frontend-додатків.
 
-```js
-// eslint.config.mjs
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+TypeScript: Типізований JavaScript для покращення надійності коду.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React Router (v7): Для навігації та маршрутизації в додатку.
+
+Ant Design (antd): Популярна бібліотека UI-компонентів.
+
+Styled Components: Для написання CSS-стилів усередині JS-компонентів.
+
+TanStack Query (React Query): Для управління станом сервера, кешування та асинхронних запитів.
+
+React Hook Form & Yup: Для ефективного управління формами та їх валідації.
+
+Axios: HTTP-клієнт для взаємодії з API.
+
+Lucide React: Бібліотека іконок.
+ 
+Початок роботи
+
+Для запуску проекту локально, виконайте наступні кроки:
+
+1. Клонування репозиторію
+
+git clone https://github.com/garroshe/anti_plagium_frontend.git
+cd antiplagium
+
+
+2. Встановлення залежностей
+
+npm install
+
+
+3. Налаштування змінних середовища
+
+Вам потрібно створити файл .env у корені проекту. Скопіюйте вміст файлу .env.example та заповніть його вашими даними
+
+4. Запуск dev-сервера
+
+npm run dev
+
+
+Додаток буде доступний за адресою http://localhost:5173 (або іншим портом, вказаним Vite).
+
+Доступні Скрипти
+
+npm run dev: Запускає додаток у режимі розробки.
+
+npm run build: Збирає додаток для продакшену.
+
+npm run lint: Запускає ESLint для перевірки коду.
+
+npm run preview: Запускає локальний сервер для перегляду зібраного додатку.

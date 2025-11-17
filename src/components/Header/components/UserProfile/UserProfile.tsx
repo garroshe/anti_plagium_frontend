@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useModal } from "../../../../context/modal-context.tsx";
 import { useUser } from "../../../../context/user-context.tsx";
+import { DEFAULT_AVATAR } from "./constatns.ts";
 import {
   Avatar,
   Dropdown,
@@ -60,10 +61,7 @@ const UserProfileDropdown = () => {
   return (
     <DropdownWrapper ref={dropdownRef}>
       <ProfileButton onClick={() => setIsOpen(!isOpen)}>
-        <Avatar
-          src={user?.avatar || "https://www.meme-arsenal.com/memes/4cdee02fbf6649b4e2c7b597f9d4d143.jpg"}
-          alt={user?.loginName}
-        />
+        <Avatar src={user?.avatar || DEFAULT_AVATAR} alt={user?.loginName} />
         <UserInfo>
           <UserName>{user?.loginName}</UserName>
           <UserEmail>{user?.email}</UserEmail>
